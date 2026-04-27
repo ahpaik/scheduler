@@ -1,6 +1,5 @@
 import express from "express";
 import ViteExpress from "vite-express";
-import fs from "node:fs";
 import * as path from "node:path";
 
 const app = express();
@@ -17,13 +16,13 @@ app.use(express.json());
 app.use(express.static('public'))
 
 let username = ""
-const workerAvailabilities = [
+let workerAvailabilities = [
   { id: 1, title: "Tutoring", due: "6/10/2026" },
   { id: 2, title: "Work Sched.", due: "8/22/2026" },
 ]
-let worker_availability_id = ""
+let worker_availability_id = 1;
 
-const workerCompleted = [
+let workerCompleted = [
   { id: 3, title: "Shifts", due: "6/10/2026" },
 ]
 
@@ -65,17 +64,42 @@ app.get("/worker_home/completed", async (req, res) => {
 app.get("/worker_home/worker_add_availability/get_id", async (req, res) => {
   try {
     let availability_obj = workerAvailabilities.find(item => item.id === worker_availability_id)
-    console.log("HERE")
     res.status(200).json( availability_obj );
   } catch (error) {
     res.status(500).json({ message: "Server error fetching data" });
   }
 })
 
-app.post("worker_home/availabilities_submit", async (req, res) => {
-  // remove availabilities id=1
-  // add the object to completed
-  // note: might want to disable button feature on schedule id=2??
+app.post("/worker_home/submitAddAvailability", async (req, res) => {
+  worker_availability_id = Number(req.body.id);
+  const itemToMove = workerAvailabilities.find(item => item.id === Number(worker_availability_id));
+  try {
+    if (itemToMove) {
+      workerCompleted.push(itemToMove);
+      await removeAvailability(worker_availability_id);
+      res.status(200).json({success: true});
+    } else {
+      res.status(404).json({success: false});
+    }
+  }
+  catch (error) {
+    res.status(500).json({success: false});
+  }
+
+})
+
+const removeAvailability = async (id) => {
+  // Create a new array without the item that has the matching id
+  workerAvailabilities = workerAvailabilities.filter((item) => item.id !== id);
+};
+
+app.get("/worker_home/worker_submitted_availability/get_id", async (req, res) => {
+  try {
+    let completed_obj = workerCompleted.find(item => item.id === worker_availability_id)
+    res.status(200).json( completed_obj );
+  } catch (error) {
+    res.status(500).json({ message: "Server error fetching data" });
+  }
 })
 
 ViteExpress.listen(app, 3000, () =>

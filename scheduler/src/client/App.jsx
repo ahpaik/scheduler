@@ -10,6 +10,7 @@ import WorkerLayout from "./worker/WorkerLayout.jsx";
 import ManagerLayout from "./manager/ManagerLayout.jsx";
 import WorkerAddAvailability from "./worker/WorkerAddAvailability.jsx";
 import WorkerCompletedSchedule from "./worker/WorkerCompletedSchedule.jsx";
+import WorkerSubmittedAvailability from "./worker/WorkerSubmittedAvailability.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -31,6 +32,7 @@ function App() {
               <Route path={"/worker_home"} element={<WorkerHome />} />
               <Route path={"/worker_home/add_availability"} element={<WorkerAddAvailability />} />
               <Route path={"/worker_home/completed_schedule"} element={<WorkerCompletedSchedule />} />
+              <Route path={"/worker_home/submitted_availability"} element={<WorkerSubmittedAvailability />} />
           </Route>
 
 

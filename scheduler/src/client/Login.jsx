@@ -30,7 +30,6 @@ function Login() {
         console.log("Inside Login handleSubmitWorker");
 
         const body = JSON.stringify( { username: workerUsername } );
-        //console.log("BODY: "+body);
         const response = await fetch( "/login", {
             method:'POST',
             headers: {

@@ -21,6 +21,7 @@ const workerAvailabilities = [
   { id: 1, title: "Tutoring", due: "6/10/2026" },
   { id: 2, title: "Work Sched.", due: "8/22/2026" },
 ]
+let worker_availability_id = ""
 
 const workerCompleted = [
   { id: 3, title: "Shifts", due: "6/10/2026" },
@@ -48,12 +49,33 @@ app.get("/worker_home/availabilities", async (req, res) => {
   }
 })
 
+app.post("/worker_home/submitAvailability", async (req, res) => {
+  worker_availability_id = req.body.id;
+  res.status(204).send();
+})
+
 app.get("/worker_home/completed", async (req, res) => {
   try {
     res.status(200).json( workerCompleted );
   } catch (error) {
     res.status(500).json({ message: "Server error fetching data" });
   }
+})
+
+app.get("/worker_home/worker_add_availability/get_id", async (req, res) => {
+  try {
+    let availability_obj = workerAvailabilities.find(item => item.id === worker_availability_id)
+    console.log("HERE")
+    res.status(200).json( availability_obj );
+  } catch (error) {
+    res.status(500).json({ message: "Server error fetching data" });
+  }
+})
+
+app.post("worker_home/availabilities_submit", async (req, res) => {
+  // remove availabilities id=1
+  // add the object to completed
+  // note: might want to disable button feature on schedule id=2??
 })
 
 ViteExpress.listen(app, 3000, () =>

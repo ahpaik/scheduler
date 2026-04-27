@@ -58,10 +58,22 @@ function WorkerHome() {
 
     if (loading) return <p>Loading information...</p>
 
-    async function handleAvailabilitySubmit(event) {
+    async function handleAvailabilitySubmit(event, id_val) {
         event.preventDefault();
         console.log("Inside handleAvailabilitySubmit");
-        navigate("/worker_home/add_availability");
+
+        const body = JSON.stringify( { id: id_val } );
+        const response = await fetch( "/worker_home/submitAvailability", {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body
+        })
+        if (response.status === 204) {
+            navigate("/worker_home/add_availability");
+        }
+
     }
 
     async function handleCompletedSubmit(event) {
@@ -89,7 +101,7 @@ function WorkerHome() {
                             <p>Due: {availability.due}</p>
                             <button
                                 className="absolute bottom-6 w-40 cursor-pointer bg-amber-400 hover:bg-amber-500 text-black py-1 px-4 rounded mt-4"
-                                onClick={(e) => handleAvailabilitySubmit(e)}>
+                                onClick={(e) => handleAvailabilitySubmit(e, availability.id)}>
                                 Add
                             </button>
                         </div>

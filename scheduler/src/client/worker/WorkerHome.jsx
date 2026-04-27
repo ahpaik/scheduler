@@ -27,6 +27,9 @@ function WorkerHome() {
 
     return (
         <section>
+            <nav>
+
+            </nav>
             <div className="flex flex-col items-center gap-2 justify-center">
                 <div>
                     <h1 className="text-4xl font-bold mb-6 flex justify-center">Login</h1>

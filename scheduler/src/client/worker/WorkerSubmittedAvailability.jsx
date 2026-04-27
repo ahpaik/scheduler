@@ -27,9 +27,9 @@ function Account() {
     return (
         <section className="pt-10">
             <div className="flex flex-col items-center gap-2 justify-center">
-                <h1>Availability for {obj.title} submitted!</h1>
+                <h1 className="text-2xl mt-8">Availability for {obj.title} submitted!</h1>
                 <button
-                    className="cursor-pointer bg-amber-400 hover:bg-amber-500 text-black py-1 px-4 rounded mt-4"
+                    className="cursor-pointer bg-blue-light hover:bg-blue-light-hover text-black py-1 px-4 rounded mt-4"
                     onClick={(e) => handleSubmit(e)}>
                     Return Home
                 </button>

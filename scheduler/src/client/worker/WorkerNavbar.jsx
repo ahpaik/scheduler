@@ -4,17 +4,16 @@ const WorkerNavbar = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const showBack = location.pathname !== '/worker_home';
-
+    const showBack = location.pathname !== '/worker_home' && location.pathname !== '/worker_home/submitted_availability';
     return (
         <nav className="navbar w-full mt-5 flex flex-col gap-y-2 px-10">
             <div className="flex items-center justify-between w-full mb-2">
                 <Link to="/worker_home" className="text-2xl font-bold tracking-tight text-blue-dark hover:text-blue-dark-hover duration-200">
                     Scheduler
                 </Link>
-                <ul className="nav-links flex items-center list-none gap-x-8">
-                    <li><Link to="/worker_home">Home</Link></li>
-                    <li><Link to="/account">Account</Link></li>
+                <ul className="nav-links flex items-center list-none gap-x-8 ">
+                    <li className="hover:text-blue-dark"><Link to="/worker_home">Home</Link></li>
+                    <li className="hover:text-blue-dark"><Link to="/account">Account</Link></li>
                 </ul>
             </div>
 

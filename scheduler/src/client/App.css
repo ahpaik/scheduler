@@ -10,14 +10,16 @@
 }
 
 @theme {
-  --color-blue-dark: #005BB3;
-  --color-blue-light: #B2DAE4;
+  --color-blue-dark: #0074EC;
+  --color-blue-light: #D2EDF2;
   --color-pink: #D8226C;
-  --color-green: #00BCD4;
+  --color-green: #029456;
   --color-orange: #F86A38;
 
-  --color-blue-dark-hover: #0074EC;
-  --color-blue-light-hover: #D2EDF2;
+  --color-blue-dark-hover: #005BB3;
+  --color-blue-light-hover: #B2DAE4;
+  --color-pink-hover: #EFB1CC;
+  --color-green-hover: #BCE4CE;
 }
 
 ::placeholder {

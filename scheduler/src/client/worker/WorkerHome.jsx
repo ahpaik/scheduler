@@ -87,7 +87,7 @@ function WorkerHome() {
             <h1 className="text-3xl mb-6">Welcome, {username}</h1>
             <div id="availabilities">
                 <h2 className="text-xl">Add Availability</h2>
-                <div className="relative flex flex-wrap p-1 rounded-md bg-amber-100 mb-6">
+                <div className="relative flex flex-wrap p-1 rounded-md bg-blue-light mb-6">
                     {availabilities.map((availability) => (
                         <div
                             className="
@@ -100,7 +100,7 @@ function WorkerHome() {
                             <h3 className="font-semibold">{availability.title}</h3>
                             <p>Due: {availability.due}</p>
                             <button
-                                className="absolute bottom-6 w-40 cursor-pointer bg-amber-400 hover:bg-amber-500 text-black py-1 px-4 rounded mt-4"
+                                className="absolute bottom-6 w-40 cursor-pointer bg-blue-dark hover:bg-blue-dark-hover text-black py-1 px-4 rounded mt-4"
                                 onClick={(e) => handleAvailabilitySubmit(e, availability.id)}>
                                 Add
                             </button>
@@ -110,7 +110,7 @@ function WorkerHome() {
             </div>
             <div id="completed">
                 <h2 className="text-xl">View Completed Availabilities and Schedules</h2>
-                <div className="relative flex flex-wrap p-1 rounded-md bg-amber-100 mb-6">
+                <div className="relative flex flex-wrap p-1 rounded-md bg-blue-light mb-6">
                     {completed.map((schedule) => (
                         <div
                             className="
@@ -122,7 +122,7 @@ function WorkerHome() {
                         >
                             <h3 className="font-semibold">{schedule.title}</h3>
                             <button
-                                className="absolute bottom-6 w-40 cursor-pointer bg-amber-400 hover:bg-amber-500 text-black py-1 px-4 rounded mt-4"
+                                className="absolute bottom-6 w-40 cursor-pointer bg-blue-dark hover:bg-blue-dark-hover text-black py-1 px-4 rounded mt-4"
                                 onClick={(e) => handleCompletedSubmit(e)}>
                                 View
                             </button>

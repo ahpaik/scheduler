@@ -13,8 +13,8 @@ const ManagerNavbar = () => {
                     Scheduler
                 </Link>
                 <ul className="nav-links flex items-center list-none gap-x-8">
-                    <li><Link to="/manager_home">Home</Link></li>
-                    <li><Link to="/account">Account</Link></li>
+                    <li className="hover:text-gray-400"><Link to="/manager_home">Home</Link></li>
+                    <li className="hover:text-gray-400"><Link to="/account">Account</Link></li>
                 </ul>
             </div>
 

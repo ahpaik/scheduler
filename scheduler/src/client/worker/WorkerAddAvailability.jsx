@@ -40,7 +40,7 @@ function WorkerAddAvailability() {
 
     // Reusable Single Day Column Component
     const SingleDayGrid = ({ dayName, label }) => (
-        <div className="mt-10 w-full max-w-62.5">
+        <div className="mt-10 w-full max-w-62.5 mr-20">
             <h3 className="text-xl font-bold mb-4">{label}</h3>
             <div className="grid grid-cols-[80px_1fr] border-t-2 border-l-2 border-black bg-white shadow-sm"
                  onMouseLeave={() => setIsDragging(false)}
@@ -59,7 +59,7 @@ function WorkerAddAvailability() {
                             onMouseDown={() => { setIsDragging(true); toggleCell(`${dayName}-spec-${hour}:00`); }}
                             onMouseEnter={() => handleMouseEnter(`${dayName}-spec-${hour}:00`)}
                             className={`border-r-2 border-b border-black cursor-pointer 
-                                ${selected.has(`${dayName}-spec-${hour}:00`) ? 'bg-green-500' : 'hover:bg-green-50'}`}
+                                ${selected.has(`${dayName}-spec-${hour}:00`) ? 'bg-pink' : 'hover:bg-pink-hover'}`}
                         />
                         {/* :30 Slot */}
                         <div className="border-r-2 border-b-2 border-black p-1 text-right text-xs text-gray-400 bg-gray-50 h-10">:30</div>
@@ -67,7 +67,7 @@ function WorkerAddAvailability() {
                             onMouseDown={() => { setIsDragging(true); toggleCell(`${dayName}-spec-${hour}:30`); }}
                             onMouseEnter={() => handleMouseEnter(`${dayName}-spec-${hour}:30`)}
                             className={`border-r-2 border-b-2 border-black cursor-pointer 
-                                ${selected.has(`${dayName}-spec-${hour}:30`) ? 'bg-green-500' : 'hover:bg-green-50'}`}
+                                ${selected.has(`${dayName}-spec-${hour}:30`) ? 'bg-pink' : 'hover:bg-pink-hover'}`}
                         />
                     </React.Fragment>
                 ))}
@@ -93,11 +93,11 @@ function WorkerAddAvailability() {
 
     return (
         <section className="px-10 mt-8 select-none pb-20">
-            <h1 className="text-3xl mb-6">Add Availability for {obj.title}</h1>
+            <h1 className="text-3xl mb-2">Add Availability for {obj.title}</h1>
 
             <div className="mb-4">
-                <h2 className="text-lg font-semibold">Weekly Overview</h2>
-                <p className="text-sm text-gray-500 italic">Main grid (Monday - Friday)</p>
+                <p className="text-base text-gray-500 italic mb-6">Click and drag to select availability</p>
+                <h2 className="text-xl font-bold mb-4">Weekly Overview</h2>
             </div>
 
             {/* --- MAIN WEEKLY GRID --- */}
@@ -121,7 +121,7 @@ function WorkerAddAvailability() {
                                 <div key={`${day}-${hour}:00`}
                                      onMouseDown={() => { setIsDragging(true); toggleCell(`${day}-${hour}:00`); }}
                                      onMouseEnter={() => handleMouseEnter(`${day}-${hour}:00`)}
-                                     className={`border-r-2 border-b border-black cursor-pointer ${selected.has(`${day}-${hour}:00`) ? 'bg-blue-500' : 'hover:bg-blue-100'}`}
+                                     className={`border-r-2 border-b border-black cursor-pointer ${selected.has(`${day}-${hour}:00`) ? 'bg-pink' : 'hover:bg-pink-hover'}`}
                                 />
                             ))}
                             <div className="border-r-2 border-b-2 border-black p-1 text-right text-xs text-gray-400 bg-gray-50 h-10">:30</div>
@@ -129,7 +129,7 @@ function WorkerAddAvailability() {
                                 <div key={`${day}-${hour}:30`}
                                      onMouseDown={() => { setIsDragging(true); toggleCell(`${day}-${hour}:30`); }}
                                      onMouseEnter={() => handleMouseEnter(`${day}-${hour}:30`)}
-                                     className={`border-r-2 border-b-2 border-black cursor-pointer ${selected.has(`${day}-${hour}:30`) ? 'bg-blue-500' : 'hover:bg-blue-100'}`}
+                                     className={`border-r-2 border-b-2 border-black cursor-pointer ${selected.has(`${day}-${hour}:30`) ? 'bg-pink' : 'hover:bg-pink-hover'}`}
                                 />
                             ))}
                         </React.Fragment>
@@ -139,12 +139,12 @@ function WorkerAddAvailability() {
 
             {/* --- SPECIFIC DAY GRIDS --- */}
             <div className="flex flex-wrap gap-10">
-                <SingleDayGrid dayName="Monday" label="Specific Date: May 1st" />
-                <SingleDayGrid dayName="Friday" label="Specific Date: May 5th" />
+                <SingleDayGrid dayName="Monday" label="5/7/2026" />
+                <SingleDayGrid dayName="Friday" label="6/8/2026" />
             </div>
 
             <button
-                className="w-60 cursor-pointer bg-amber-400 hover:bg-amber-500 text-black py-1 px-4 rounded mt-4 mb-8"
+                className="w-50 cursor-pointer bg-blue-light hover:bg-blue-light-hover text-black py-1 px-4 rounded mt-12 mb-8"
                 onClick={(e) => handleSubmit(e)}>
                 Submit Availability
             </button>

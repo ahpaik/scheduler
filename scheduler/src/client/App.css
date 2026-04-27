@@ -1,10 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 @import "tailwindcss";
+@custom-variant hover (&:hover);
 
 @layer base {
   body {
-    @apply font-['Montserrat'] text-black; /* Replace with your desired Tailwind classes */
+    @apply font-['Roboto'] text-black; /* Replace with your desired Tailwind classes */
   }
+}
+
+@theme {
+  --color-blue-dark: #005BB3;
+  --color-blue-light: #B2DAE4;
+  --color-pink: #D8226C;
+  --color-green: #00BCD4;
+  --color-orange: #F86A38;
+
+  --color-blue-dark-hover: #0074EC;
+  --color-blue-light-hover: #D2EDF2;
 }
 
 ::placeholder {

@@ -4,7 +4,7 @@ const ManagerNavbar = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const showBack = location.pathname !== '/worker_home';
+    const showBack = location.pathname !== '/worker_home' && location.pathname !== '/manager_home/created_planner';
 
     return (
         <nav className="navbar w-full mt-5 flex flex-col gap-y-2 px-10">

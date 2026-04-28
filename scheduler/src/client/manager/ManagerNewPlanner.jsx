@@ -171,8 +171,8 @@ function ManagerNewPlanner() {
                         </div>
                     </div>
 
-                    <div id="shareWithWorkers">
-                        <label className="text-lg font-bold block mb-2">Share with Workers</label>
+                    <div id="shareWithWorkers" className="mb-5">
+                        <label className="text-lg block mb-2">Share with Workers</label>
                         <div className="flex gap-2 mb-6">
                             <input
                                 type="email"
@@ -218,9 +218,9 @@ function ManagerNewPlanner() {
                         </div>
 
                         <button
-                            className="w-50 cursor-pointer bg-blue-light hover:bg-blue-light-hover text-black py-1 px-4 rounded mt-12 mb-8"
+                            className="flex items-center justify-center w-60 cursor-pointer bg-blue-light hover:bg-blue-light-hover text-black py-2 px-6 rounded transition mt-12 mb-10"
                             onClick={(e) => handleSubmit(e)}>
-                            Submit Availability
+                            Save Planner
                         </button>
 
                     </div>

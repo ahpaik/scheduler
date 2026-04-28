@@ -120,7 +120,7 @@ app.post("/manager_home/viewPlanner", async (req, res) => {
 })
 
 app.post("/manager_home/submitNewPlanner", async (req, res) => {
-  let id_val = managerPlanners.length;
+  let id_val = managerPlanners.length + 1;
   manager_planner_id = id_val;
   managerPlanners.push({id: id_val, title: req.body.title});
   res.status(204).send();

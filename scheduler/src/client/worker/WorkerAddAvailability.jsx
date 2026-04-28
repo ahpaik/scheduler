@@ -92,7 +92,7 @@ function WorkerAddAvailability() {
     }
 
     return (
-        <section className="px-10 mt-8 select-none pb-20">
+        <section className="px-10 mt-4 select-none pb-20">
             <h1 className="text-3xl mb-2">Add Availability for {obj.title}</h1>
 
             <div className="mb-4">

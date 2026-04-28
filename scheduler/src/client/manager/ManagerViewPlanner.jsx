@@ -68,7 +68,7 @@ function ManagerViewPlanner() {
     }
 
     return (
-        <section className="px-10 mt-8 select-none pb-20">
+        <section className="px-10 mt-4 select-none pb-20">
             <h1 className="text-3xl mb-8">{obj.title} Planner</h1>
             <div className="flex flex-row gap-6 mb-6">
                 <h1 className="text-xl">View All Worker Availabilities:</h1>

@@ -57,7 +57,7 @@ function ManagerNewPlanner() {
     }
 
     return (
-        <section className="pt-10 px-10">
+        <section className="pt-4 px-10">
             <div className="flex flex-col gap-2">
                 <h1 className="text-3xl justify-center mb-4">New Planner</h1>
                 <form>

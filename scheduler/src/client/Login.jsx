@@ -1,5 +1,6 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
+import logo from "./assets/logo.svg";
 // import "./App.css";
 
 function Login() {
@@ -45,65 +46,81 @@ function Login() {
     return (
         <section className="pt-10">
             <div className="flex flex-col items-center gap-2 justify-center">
-                <div>
-                    <h1 className="text-4xl font-bold mb-8 flex justify-center">Welcome to the Scheduler</h1>
+                <div className="flex flex-rows gap-2 items-center mb-12">
+                    <div className="flex">
+                        <img
+                            src={logo}
+                            alt={"logo"}
+                            style={{ width: '60px', height: 'auto' }}
+                        />
+                    </div>
+                    <div className="flex">
+                        <h1 className="flex text-5xl font-bold tracking-tight text-blue-dark justify-center">Scheduler</h1>
+                    </div>
                 </div>
-                <h2 className="text-2xl flex justify-center mb-1">Manager Login</h2>
-                <form id="login" className="flex flex-col w-110 justify-center items-center">
-                    <div className="mb-4">
-                        <input
-                            type="text"
-                            id="user"
-                            className="border border-amber-300 bg-amber-100 rounded-md"
-                            name="user"
-                            value={ managerUsername }
-                            onChange={(e) => setManagerUsername(e.target.value)}
-                            placeholder="username"/><br/>
+                <div className="flex flex-rows gap-6">
+                    <div>
+                        <h2 className="text-xl flex justify-center mb-4">Manager Login</h2>
+                        <form id="login" className="flex flex-col w-110 justify-center items-center">
+                            <div className="mb-4">
+                                <input
+                                    type="text"
+                                    id="user"
+                                    className="border border-black rounded-md mb-2 h-10 w-80"
+                                    name="user"
+                                    value={ managerUsername }
+                                    onChange={(e) => setManagerUsername(e.target.value)}
+                                    placeholder="username"
+                                />
+                            </div>
+                            <div className="mb-0">
+                                <input
+                                    type="text"
+                                    id="pw"
+                                    className="border border-black rounded-md h-10 mb-4 w-80"
+                                    name="pw"
+                                    placeholder="password"/><br/>
+                            </div>
+                            <div id="loginButton" className="mb-8">
+                                <button
+                                    className="flex items-center justify-center w-60 cursor-pointer bg-blue-light hover:bg-blue-light-hover text-black py-2 px-6 rounded transition"
+                                    onClick={(e) => handleSubmitManager(e)}>
+                                    Login
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                    <div className="mb-0">
-                        <input
-                            type="text"
-                            id="pw"
-                            className="border border-amber-300 bg-amber-100 rounded-md"
-                            name="pw"
-                            placeholder="password"/><br/>
+                    <div>
+                        <h2 className="text-xl flex justify-center mb-4">Worker Login</h2>
+                        <form id="workerLogin" className="flex flex-col w-110 justify-center items-center">
+                            <div className="mb-4">
+                                <input
+                                    type="text"
+                                    id="user"
+                                    className="border border-black rounded-md h-10 mb-2 w-80"
+                                    name="user"
+                                    value={ workerUsername }
+                                    onChange={(e) => setWorkerUsername(e.target.value)}
+                                    placeholder="username"/><br/>
+                            </div>
+                            <div className="mb-0">
+                                <input
+                                    type="text"
+                                    id="pw"
+                                    className="border border-black rounded-md h-10 mb-4 w-80"
+                                    name="pw"
+                                    placeholder="password"/><br/>
+                            </div>
+                            <div id="loginButton">
+                                <button
+                                    className="flex items-center justify-center w-60 cursor-pointer bg-blue-light hover:bg-blue-light-hover text-black py-2 px-6 rounded transition"
+                                    onClick={(e) => handleSubmitWorker(e)}>
+                                    Login
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                    <div id="loginButton" className="mb-8">
-                        <button
-                            className="cursor-pointer bg-amber-400 hover:bg-amber-500 text-black py-1 px-4 rounded mt-4"
-                            onClick={(e) => handleSubmitManager(e)}>
-                            Login
-                        </button>
-                    </div>
-                </form>
-                <h2 className="text-2xl flex justify-center mb-1">Worker Login</h2>
-                <form id="workerLogin" className="flex flex-col w-110 justify-center items-center">
-                    <div className="mb-4">
-                        <input
-                            type="text"
-                            id="user"
-                            className="border border-amber-300 bg-amber-100 rounded-md"
-                            name="user"
-                            value={ workerUsername }
-                            onChange={(e) => setWorkerUsername(e.target.value)}
-                            placeholder="username"/><br/>
-                    </div>
-                    <div className="mb-0">
-                        <input
-                            type="text"
-                            id="pw"
-                            className="border border-amber-300 bg-amber-100 rounded-md"
-                            name="pw"
-                            placeholder="password"/><br/>
-                    </div>
-                    <div id="loginButton">
-                        <button
-                            className="cursor-pointer bg-amber-400 hover:bg-amber-500 text-black py-1 px-4 rounded mt-4"
-                            onClick={(e) => handleSubmitWorker(e)}>
-                            Login
-                        </button>
-                    </div>
-                </form>
+                </div>
             </div>
             <div id="error"></div>
         </section>

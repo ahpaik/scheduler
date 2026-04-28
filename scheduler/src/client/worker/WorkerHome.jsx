@@ -83,7 +83,7 @@ function WorkerHome() {
     }
 
     return (
-        <section className="px-10 mt-8">
+        <section className="px-10 mt-4">
             <h1 className="text-3xl mb-6">Welcome, {username}</h1>
             <div id="availabilities">
                 <h2 className="text-xl">Add Availability</h2>

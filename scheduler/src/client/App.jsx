@@ -14,6 +14,7 @@ import WorkerSubmittedAvailability from "./worker/WorkerSubmittedAvailability.js
 import ManagerViewPlanner from "./manager/ManagerViewPlanner.jsx";
 import ManagerNewPlanner from "./manager/ManagerNewPlanner.jsx";
 import ManagerCreatedPlanner from "./manager/ManagerCreatedPlanner.jsx"
+import ManagerSavedPlanner from "./manager/ManagerSavedPlanner.jsx"
 
 function App() {
   const [count, setCount] = useState(0);
@@ -32,6 +33,7 @@ function App() {
               <Route path={"/manager_home/view_planner"} element={<ManagerViewPlanner />} />
               <Route path={"/manager_home/new_planner"} element={<ManagerNewPlanner />} />
               <Route path={"/manager_home/created_planner"} element={<ManagerCreatedPlanner />} />
+              <Route path={"/manager_home/saved_planner"} element={<ManagerSavedPlanner />} />
           </Route>
 
           <Route element={<WorkerLayout />}>

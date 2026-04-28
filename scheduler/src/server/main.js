@@ -21,10 +21,14 @@ let workerAvailabilities = [
   { id: 2, title: "Work Sched.", due: "8/22/2026" },
 ]
 let worker_availability_id = 1;
-
 let workerCompleted = [
   { id: 3, title: "Shifts", due: "6/10/2026" },
 ]
+let managerPlanners = [
+  { id: 1, title: "Tutoring Schedules" },
+  { id: 2, title: "Worker planning" },
+]
+let manager_planner_id = 1;
 
 app.post("/login", async (req, res) => {
   username = req.body.username;
@@ -32,7 +36,7 @@ app.post("/login", async (req, res) => {
   res.status(204).send();
 })
 
-app.get("/worker_home/username", async (req, res) => {
+app.get("/home/username", async (req, res) => {
   try {
     res.status(200).json({ username: username });
   } catch (error) {
@@ -96,6 +100,35 @@ const removeAvailability = async (id) => {
 app.get("/worker_home/worker_submitted_availability/get_id", async (req, res) => {
   try {
     let completed_obj = workerCompleted.find(item => item.id === worker_availability_id)
+    res.status(200).json( completed_obj );
+  } catch (error) {
+    res.status(500).json({ message: "Server error fetching data" });
+  }
+})
+
+app.get("/manager_home/get_planners", async (req, res) => {
+  try {
+    res.status(200).json( managerPlanners );
+  } catch (error) {
+    res.status(500).json({ message: "Server error fetching data" });
+  }
+})
+
+app.post("/manager_home/viewPlanner", async (req, res) => {
+  manager_planner_id = req.body.id;
+  res.status(204).send();
+})
+
+app.post("/manager_home/submitNewPlanner", async (req, res) => {
+  let id_val = managerPlanners.length;
+  manager_planner_id = id_val;
+  managerPlanners.push({id: id_val, title: req.body.title});
+  res.status(204).send();
+})
+
+app.get("/manager_home/created_planner/get_id", async (req, res) => {
+  try {
+    let completed_obj = managerPlanners.find(item => item.id === manager_planner_id)
     res.status(200).json( completed_obj );
   } catch (error) {
     res.status(500).json({ message: "Server error fetching data" });

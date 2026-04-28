@@ -1,14 +1,14 @@
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
-function WorkerSubmittedAvailability() {
+function ManagerCreatedPlanner() {
     const [obj, setObj] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchObj = async () => {
             try {
-                const response = await fetch("/worker_home/worker_submitted_availability/get_id");
+                const response = await fetch("/manager_home/created_planner/get_id");
                 const data = await response.json();
                 setObj(data);
             } catch (error) {
@@ -21,7 +21,7 @@ function WorkerSubmittedAvailability() {
     async function handleSubmit(event) {
         event.preventDefault();
         console.log("Inside handleSubmit");
-        navigate("/worker_home");
+        navigate("/manager_home");
     }
 
     return (
@@ -38,4 +38,4 @@ function WorkerSubmittedAvailability() {
     );
 }
 
-export default WorkerSubmittedAvailability;
+export default ManagerCreatedPlanner;

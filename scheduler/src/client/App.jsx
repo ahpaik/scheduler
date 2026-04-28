@@ -11,6 +11,9 @@ import ManagerLayout from "./manager/ManagerLayout.jsx";
 import WorkerAddAvailability from "./worker/WorkerAddAvailability.jsx";
 import WorkerCompletedSchedule from "./worker/WorkerCompletedSchedule.jsx";
 import WorkerSubmittedAvailability from "./worker/WorkerSubmittedAvailability.jsx";
+import ManagerViewPlanner from "./manager/ManagerViewPlanner.jsx";
+import ManagerNewPlanner from "./manager/ManagerNewPlanner.jsx";
+import ManagerCreatedPlanner from "./manager/ManagerCreatedPlanner.jsx"
 
 function App() {
   const [count, setCount] = useState(0);
@@ -26,6 +29,9 @@ function App() {
 
           <Route element={<ManagerLayout />}>
               <Route path={"/manager_home"} element={<ManagerHome />} />
+              <Route path={"/manager_home/view_planner"} element={<ManagerViewPlanner />} />
+              <Route path={"/manager_home/new_planner"} element={<ManagerNewPlanner />} />
+              <Route path={"/manager_home/created_planner"} element={<ManagerCreatedPlanner />} />
           </Route>
 
           <Route element={<WorkerLayout />}>

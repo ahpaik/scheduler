@@ -4,74 +4,97 @@ import { useNavigate } from "react-router-dom";
 
 function ManagerHome() {
     const [ username, setUsername ] = useState("");
-    const [ password, setPassword ] = useState("");
+    const [ planners, setPlanners ] = useState([]);
+    const [ loading, setLoading ] = useState(true);
     const navigate = useNavigate();
 
-    async function handleSubmit(event) {
-        event.preventDefault();
-        console.log("Inside Login handleSubmit");
+    useEffect(() => {
+        const fetchUsername = async () => {
+            try {
+                const response = await fetch("home/username");
+                const data = await response.json();
+                setUsername(data.username);
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }
+        fetchUsername();
+    }, []);
 
-        const body = JSON.stringify( { username: username, password: password } );
-        //console.log("BODY: "+body);
-        const response = await fetch( "/login", {
+    useEffect(() => {
+        const fetchPlanners = async () => {
+            try {
+                const response = await fetch("manager_home/get_planners");
+                const data = await response.json();
+                setPlanners(data);
+                setLoading(false);
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }
+        fetchPlanners();
+    }, []);
+
+    if (loading) return <p>Loading information...</p>
+
+    async function handleViewPlannerSubmit(event, id_val) {
+        event.preventDefault();
+        console.log("Inside handleViewPlannerSubmit");
+
+        const body = JSON.stringify( { id: id_val } );
+        const response = await fetch( "/manager_home/viewPlanner", {
             method:'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body
         })
-
-        const text = await response.json()
-        console.log( "text:", text )
-        //window.location.href = "/home";
-        if (response.ok) {
-            console.log("HERE")
-            navigate("/");
+        if (response.status === 204) {
+            navigate("/manager_home/view_planner");
         }
+
+    }
+
+    async function handleNewPlannerSubmit(event) {
+        event.preventDefault();
+        console.log("Inside handleNewPlannerSubmit");
+        navigate("/manager_home/new_planner");
     }
 
     return (
-        <section>
-            <div className="flex flex-col items-center gap-2 justify-center">
-                <div>
-                    <h1 className="text-4xl font-bold mb-6 flex justify-center">Login</h1>
-                    <p className="flex justify-center mb-4">Welcome to the To Do List Tracker!</p>
-                    <p className="flex justify-center mb-4">Please note: if the user account doesn't exist, this form
-                        creates a new user.</p>
+        <section className="px-10 mt-8">
+            <h1 className="text-3xl mb-6">Welcome, {username}</h1>
+            <div id="planners" className="w-full">
+                <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-xl">Add Availability</h2>
+                    <button
+                        className="flex items-center justify-center w-36 cursor-pointer bg-blue-light hover:bg-blue-light-hover text-black py-1 px-4 rounded"
+                        onClick={(e) => handleNewPlannerSubmit(e)}>
+                        New Planner
+                    </button>
                 </div>
-                <form id="login" className="flex flex-col w-110 justify-center items-center">
-                    <div className="mb-4">
-                        <label htmlFor="user">Username</label><br/>
-                        <input
-                            type="text"
-                            id="user"
-                            className="border border-amber-300 bg-amber-100"
-                            name="user"
-                            value={ username }
-                            onChange={(e) => setUsername(e.target.value)}
-                            placeholder=""/><br/>
-                    </div>
-                    <div className="mb-0">
-                        <label htmlFor="pw">Password</label><br/>
-                        <input
-                            type="text"
-                            id="pw"
-                            className="border border-amber-300 bg-amber-100"
-                            name="pw"
-                            value={ password }
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder=""/><br/>
-                    </div>
-                    <div id="loginButton">
-                        <button
-                            className="cursor-pointer bg-amber-400 hover:bg-amber-500 text-black py-1 px-4 rounded mt-4"
-                            onClick={(e) => handleSubmit(e)}>
-                            Login
-                        </button>
-                    </div>
-                </form>
+                <div className="flex flex-wrap gap-0.5 p-1 rounded-md bg-blue-light mb-6">
+                    {planners.map((planner) => (
+                        <div
+                            className="
+                                relative flex flex-col items-center justify-start
+                                w-46 h-36 p-6 m-2
+                                bg-white border border-gray-300 rounded-md shadow-sm
+                                "
+                            key={planner.id}
+                        >
+                            <h3 className="font-semibold text-center">{planner.title}</h3>
+                            <button
+                                className="absolute bottom-3 w-40 cursor-pointer bg-blue-dark hover:bg-blue-dark-hover text-black py-1 px-4 rounded mt-4"
+                                onClick={(e) => handleViewPlannerSubmit(e, planner.id)}>
+                                View
+                            </button>
+                        </div>
+                    ))}
+                </div>
             </div>
-            <div id="error"></div>
         </section>
     );
 }

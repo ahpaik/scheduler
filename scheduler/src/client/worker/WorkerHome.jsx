@@ -12,7 +12,7 @@ function WorkerHome() {
     useEffect(() => {
         const fetchUsername = async () => {
             try {
-                const response = await fetch("worker_home/username");
+                const response = await fetch("home/username");
                 const data = await response.json();
                 setUsername(data.username);
             }
@@ -97,8 +97,8 @@ function WorkerHome() {
                                 "
                             key={availability.id}
                         >
-                            <h3 className="font-semibold">{availability.title}</h3>
-                            <p>Due: {availability.due}</p>
+                            <h3 className="font-semibold text-center">{availability.title}</h3>
+                            <p className="text-center">Due: {availability.due}</p>
                             <button
                                 className="absolute bottom-6 w-40 cursor-pointer bg-blue-dark hover:bg-blue-dark-hover text-black py-1 px-4 rounded mt-4"
                                 onClick={(e) => handleAvailabilitySubmit(e, availability.id)}>
@@ -120,7 +120,7 @@ function WorkerHome() {
                                 "
                             key={schedule.id}
                         >
-                            <h3 className="font-semibold">{schedule.title}</h3>
+                            <h3 className="font-semibold text-center">{schedule.title}</h3>
                             <button
                                 className="absolute bottom-6 w-40 cursor-pointer bg-blue-dark hover:bg-blue-dark-hover text-black py-1 px-4 rounded mt-4"
                                 onClick={(e) => handleCompletedSubmit(e)}>

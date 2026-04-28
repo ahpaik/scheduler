@@ -46,7 +46,7 @@ function Login() {
     return (
         <section className="pt-10">
             <div className="flex flex-col items-center gap-2 justify-center">
-                <div className="flex flex-rows gap-2 items-center mb-12">
+                <div className="flex flex-rows gap-2 items-center mb-16 mt-6">
                     <div className="flex">
                         <img
                             src={logo}

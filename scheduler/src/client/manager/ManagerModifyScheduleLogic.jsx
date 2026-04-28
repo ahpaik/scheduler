@@ -9,27 +9,24 @@ const ManagerModifyScheduleLogic = () => {
     const [isDragging, setIsDragging] = useState(false);
 
     // Initial Data State
-    const [schedule, setSchedule] = useState({
-        'Mon-10:00': ['WorkerA'], 'Mon-10:30': ['WorkerA'],
-        'Mon-11:00': ['WorkerA'], 'Mon-11:30': ['WorkerA'],
-        'Mon-12:00': ['WorkerA'], 'Mon-12:30': ['WorkerA'],
-        'Mon-1:00': ['WorkerB'], 'Mon-1:30': ['WorkerB'], // WorkerA 10-1, WorkerB 12-3
-        'Mon-12:00-overlap': ['WorkerA', 'WorkerB'], // Logic will handle this below
-        'Mon-2:00': ['WorkerB'], 'Mon-2:30': ['WorkerB'],
-        'Wed-2:00': ['WorkerA'], 'Wed-2:30': ['WorkerA'],
-    });
+    const [schedule, setSchedule] = useState({});
 
     // Seed initial state based on your requirements
     useEffect(() => {
         const initial = {
-            // Worker A Monday 10-1
-            'Mon-10:00': ['WorkerA'], 'Mon-10:30': ['WorkerA'], 'Mon-11:00': ['WorkerA'],
-            'Mon-11:30': ['WorkerA'], 'Mon-12:00': ['WorkerA'], 'Mon-12:30': ['WorkerA'],
-            // Worker B Monday 12-3
-            'Mon-12:00': ['WorkerA', 'WorkerB'], 'Mon-12:30': ['WorkerA', 'WorkerB'],
-            'Mon-1:00': ['WorkerB'], 'Mon-1:30': ['WorkerB'], 'Mon-2:00': ['WorkerB'], 'Mon-2:30': ['WorkerB'],
-            // Worker A Wed 2-3
-            'Wed-2:00': ['WorkerA'], 'Wed-2:30': ['WorkerA'],
+            // Monday: Worker A (9-11 not available to be 9-10)
+            'Mon-9:00': ['WorkerA'], 'Mon-9:30': ['WorkerA'],
+            'Mon-10:00': ['WorkerA', 'WorkerB'], 'Mon-10:30': ['WorkerA', 'WorkerB'],
+            // Tuesday: WorkerB (2-3)
+            'Tues-2:00': ['WorkerB'], 'Tues-2:30': ['WorkerB'],
+            // Wednesday: Worker B (11-12)
+            'Wed-11:00': ['WorkerB'], 'Wed-11:30': ['WorkerB'],
+            // Thursday: WorkerA (10-11)
+            'Thurs-10:00': ['WorkerA'], 'Thurs-10:30': ['WorkerA'],
+            'Thurs-11:00': ['WorkerA'], 'Thurs-11:30': ['WorkerA'],
+            // Friday: WorkerB (2-3)
+            'Fri-2:00': ['WorkerB'], 'Fri-2:30': ['WorkerB']
+
         };
         setSchedule(initial);
         setObj({title: "Interactive"}); // Placeholder for your fetch logic

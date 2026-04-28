@@ -5,10 +5,6 @@ import * as path from "node:path";
 const app = express();
 const __dirname = path.resolve();
 
-// app.get("/hello", (req, res) => {
-//   res.send("Hello Vite + React!");
-// });
-
 // Middleware is app.use()
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.json());
@@ -18,15 +14,15 @@ app.use(express.static('public'))
 let username = ""
 let workerAvailabilities = [
   { id: 1, title: "Tutoring", due: "6/10/2026" },
-  { id: 2, title: "Work Sched.", due: "8/22/2026" },
+  { id: 2, title: "Work", due: "8/22/2026" },
 ]
 let worker_availability_id = 1;
 let workerCompleted = [
   { id: 3, title: "Shifts", due: "6/10/2026" },
 ]
 let managerPlanners = [
-  { id: 1, title: "Tutoring Schedules" },
-  { id: 2, title: "Worker planning" },
+  { id: 1, title: "Tutors" },
+  { id: 2, title: "Working" },
 ]
 let manager_planner_id = 1;
 
@@ -133,6 +129,26 @@ app.get("/manager_home/created_planner/get_id", async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Server error fetching data" });
   }
+})
+
+app.post("/navRestart", async (req, res) => {
+  // Reset all the global vars to initialized values
+  username = ""
+  workerAvailabilities = [
+    { id: 1, title: "Tutoring", due: "6/10/2026" },
+    { id: 2, title: "Work", due: "8/22/2026" },
+  ]
+  worker_availability_id = 1;
+  workerCompleted = [
+    { id: 3, title: "Shifts", due: "6/10/2026" },
+  ]
+  managerPlanners = [
+    { id: 1, title: "Tutors" },
+    { id: 2, title: "Working" },
+  ]
+  manager_planner_id = 1;
+
+  res.status(204).send();
 })
 
 ViteExpress.listen(app, 3000, () =>

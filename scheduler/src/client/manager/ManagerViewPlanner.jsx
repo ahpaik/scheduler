@@ -6,7 +6,7 @@ const DAYS = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri'];
 const HOURS = [8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6] // 8am to 6pm
 
 const availability = {
-    // Monday: Worker A (10-2), Worker B (1-4)
+    // Monday: Worker A (10-2, 5-6), Worker B (1-4)
     'Mon-10:00': ['WorkerA'], 'Mon-10:30': ['WorkerA'],
     'Mon-11:00': ['WorkerA'], 'Mon-11:30': ['WorkerA'],
     'Mon-12:00': ['WorkerA'], 'Mon-12:30': ['WorkerA'],
@@ -14,8 +14,44 @@ const availability = {
     'Mon-1:30': ['WorkerA', 'WorkerB'], // Overlap
     'Mon-2:00': ['WorkerB'], 'Mon-2:30': ['WorkerB'],
     'Mon-3:00': ['WorkerB'], 'Mon-3:30': ['WorkerB'],
-    // Wednesday: Worker A (9-10)
-    'Wed-9:00': ['WorkerA'], 'Wed-9:30': ['WorkerA'],
+    'Mon-5:00': ['WorkerA'], 'Mon-5:30': ['WorkerA'],
+    // Tuesday: Worker A (11-3), Worker B (9-10, 2-5)
+    'Tues-9:00': ['WorkerB'], 'Tues-9:30': ['WorkerB'],
+    'Tues-11:00': ['WorkerA'], 'Tues-11:30': ['WorkerA'],
+    'Tues-12:00': ['WorkerA'], 'Tues-12:30': ['WorkerA'],
+    'Tues-1:00': ['WorkerA'], 'Tues-1:30': ['WorkerA'],
+    'Tues-2:00': ['WorkerA', 'WorkerB'], // Overlap
+    'Tues-2:30': ['WorkerA', 'WorkerB'], // Overlap
+    'Tues-3:00': ['WorkerB'], 'Tues-3:30': ['WorkerB'],
+    'Tues-4:00': ['WorkerB'], 'Tues-4:30': ['WorkerB'],
+    // Wednesday: Worker A (11-3), Worker B (8-1)
+    'Wed-8:00': ['WorkerB'], 'Wed-8:30': ['WorkerB'],
+    'Wed-9:00': ['WorkerB'], 'Wed-9:30': ['WorkerB'],
+    'Wed-10:00': ['WorkerB'], 'Wed-10:30': ['WorkerB'],
+    'Wed-11:00': ['WorkerA', 'WorkerB'],
+    'Wed-11:30': ['WorkerA', 'WorkerB'],
+    'Wed-12:00': ['WorkerA', 'WorkerB'],
+    'Wed-12:30': ['WorkerA', 'WorkerB'],
+    'Wed-1:00': ['WorkerA'], 'Wed-1:30': ['WorkerA'],
+    'Wed-2:00': ['WorkerA'], 'Wed-2:30': ['WorkerA'],
+    // Thursday: Worker A (10-2, 5-6), Worker B (1-4)
+    'Thurs-10:00': ['WorkerA'], 'Thurs-10:30': ['WorkerA'],
+    'Thurs-11:00': ['WorkerA'], 'Thurs-11:30': ['WorkerA'],
+    'Thurs-12:00': ['WorkerA'], 'Thurs-12:30': ['WorkerA'],
+    'Thurs-1:00': ['WorkerA', 'WorkerB'], // Overlap
+    'Thurs-1:30': ['WorkerA', 'WorkerB'], // Overlap
+    'Thurs-2:00': ['WorkerB'], 'Thurs-2:30': ['WorkerB'],
+    'Thurs-3:00': ['WorkerB'], 'Thurs-3:30': ['WorkerB'],
+    'Thurs-5:00': ['WorkerA'], 'Thurs-5:30': ['WorkerA'],
+    // Friday: Worker A (11-3), Worker B (9-10, 2-5)
+    'Fri-9:00': ['WorkerB'], 'Fri-9:30': ['WorkerB'],
+    'Fri-11:00': ['WorkerA'], 'Fri-11:30': ['WorkerA'],
+    'Fri-12:00': ['WorkerA'], 'Fri-12:30': ['WorkerA'],
+    'Fri-1:00': ['WorkerA'], 'Fri-1:30': ['WorkerA'],
+    'Fri-2:00': ['WorkerA', 'WorkerB'], // Overlap
+    'Fri-2:30': ['WorkerA', 'WorkerB'], // Overlap
+    'Fri-3:00': ['WorkerB'], 'Fri-3:30': ['WorkerB'],
+    'Fri-4:00': ['WorkerB'], 'Fri-4:30': ['WorkerB'],
 };
 
 function ManagerViewPlanner() {

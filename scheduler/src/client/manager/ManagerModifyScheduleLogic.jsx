@@ -63,7 +63,7 @@ const ManagerModifyScheduleLogic = () => {
                 {workers.map((worker, idx) => (
                     <div
                         key={idx}
-                        className={`h-full flex-1 ${worker === 'WorkerA' ? 'bg-pink-400' : 'bg-green-400'} 
+                        className={`h-full flex-1 ${worker === 'WorkerA' ? 'bg-pink' : 'bg-green'} 
                         ${workers.length > 1 && idx === 0 ? 'border-r border-black/10' : ''}`}
                     />
                 ))}
@@ -74,25 +74,21 @@ const ManagerModifyScheduleLogic = () => {
     if (!obj) return <div className="p-10">Loading...</div>;
 
     return (
-        <section className="px-10 mt-8 select-none pb-20">
-            <h1 className="text-3xl mb-4">Edit {obj.title} Availability</h1>
-
+        <section className="max-w-4xl mb-8">
             {/* Selection Controls */}
             <div className="flex gap-4 mb-6 items-center">
-                <p className="font-bold">Select Worker to Paint:</p>
                 <button
                     onClick={() => setActiveWorker('WorkerA')}
-                    className={`px-4 py-2 border-2 flex items-center gap-2 rounded transition ${activeWorker === 'WorkerA' ? 'border-black bg-pink-100' : 'border-gray-200'}`}
+                    className={`cursor-pointer px-4 py-2 border-2 flex items-center gap-2 rounded transition ${activeWorker === 'WorkerA' ? 'border-black bg-pink-100' : 'border-gray-200'}`}
                 >
-                    <div className="w-4 h-4 bg-pink-400 border border-black"></div> Worker A
+                    <div className="w-4 h-4 bg-pink border border-black"></div> Sophie
                 </button>
                 <button
                     onClick={() => setActiveWorker('WorkerB')}
-                    className={`px-4 py-2 border-2 flex items-center gap-2 rounded transition ${activeWorker === 'WorkerB' ? 'border-black bg-green-100' : 'border-gray-200'}`}
+                    className={`cursor-pointer px-4 py-2 border-2 flex items-center gap-2 rounded transition ${activeWorker === 'WorkerB' ? 'border-black bg-green-100' : 'border-gray-200'}`}
                 >
-                    <div className="w-4 h-4 bg-green-400 border border-black"></div> Worker B
+                    <div className="w-4 h-4 bg-green border border-black"></div> Parker
                 </button>
-                <p className="text-sm italic text-gray-500 ml-4">Click and drag on the grid below</p>
             </div>
 
             <div className="max-w-4xl">
@@ -102,9 +98,9 @@ const ManagerModifyScheduleLogic = () => {
                     onMouseUp={() => setIsDragging(false)}
                 >
                     {/* Header */}
-                    <div className="border-r-2 border-b-2 border-black bg-gray-100" />
+                    <div className="border-r-2 border-b-2 border-black bg-blue-light" />
                     {DAYS.map(day => (
-                        <div key={day} className="border-r-2 border-b-2 border-black bg-gray-100 p-2 font-bold text-center">{day}</div>
+                        <div key={day} className="border-r-2 border-b-2 border-black bg-blue-light p-2 font-bold text-center">{day}</div>
                     ))}
 
                     {/* Grid */}
@@ -114,7 +110,7 @@ const ManagerModifyScheduleLogic = () => {
                                 const isHalf = minute === ':30';
                                 return (
                                     <React.Fragment key={minute}>
-                                        <div className={`border-r-2 border-black p-2 text-right text-sm bg-gray-50 h-10 ${isHalf ? 'border-b-2 text-xs text-gray-400' : 'font-semibold'}`}>
+                                        <div className={`border-r-2 border-black p-2 text-right text-sm bg-blue-light h-10 ${isHalf ? 'border-b-2 text-xs text-gray-400' : 'border-b font-semibold'}`}>
                                             {isHalf ? minute : `${hour}:00`}
                                         </div>
                                         {DAYS.map(day => {

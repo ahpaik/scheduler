@@ -41,7 +41,7 @@ function WorkerAddAvailability() {
     // Reusable Single Day Column Component
     const SingleDayGrid = ({ dayName, label }) => (
         <div className="mt-10 w-full max-w-62.5 mr-20">
-            <h3 className="text-xl font-bold mb-4">{label}</h3>
+            <h3 className="text-2xl mb-4">{label}</h3>
             <div className="grid grid-cols-[80px_1fr] border-t-2 border-l-2 border-black bg-white shadow-sm"
                  onMouseLeave={() => setIsDragging(false)}
                  onMouseUp={() => setIsDragging(false)}>
@@ -52,21 +52,21 @@ function WorkerAddAvailability() {
                 {HOURS.map((hour) => (
                     <React.Fragment key={hour}>
                         {/* :00 Slot */}
-                        <div className="border-r-2 border-b border-black p-2 text-right text-sm font-semibold bg-gray-50 h-10">
+                        <div className="border-r-2 border-b border-black p-2 text-right text-sm font-semibold bg-blue-light h-10">
                             {hour}:00
                         </div>
                         <div
                             onMouseDown={() => { setIsDragging(true); toggleCell(`${dayName}-spec-${hour}:00`); }}
                             onMouseEnter={() => handleMouseEnter(`${dayName}-spec-${hour}:00`)}
-                            className={`border-r-2 border-b border-black cursor-pointer 
+                            className={`border-r-2 border-b border-black cursor-crosshair 
                                 ${selected.has(`${dayName}-spec-${hour}:00`) ? 'bg-pink' : 'hover:bg-pink-hover'}`}
                         />
                         {/* :30 Slot */}
-                        <div className="border-r-2 border-b-2 border-black p-1 text-right text-xs text-gray-400 bg-gray-50 h-10">:30</div>
+                        <div className="border-r-2 border-b-2 border-black p-1 text-right text-xs text-gray-400 bg-blue-light h-10">:30</div>
                         <div
                             onMouseDown={() => { setIsDragging(true); toggleCell(`${dayName}-spec-${hour}:30`); }}
                             onMouseEnter={() => handleMouseEnter(`${dayName}-spec-${hour}:30`)}
-                            className={`border-r-2 border-b-2 border-black cursor-pointer 
+                            className={`border-r-2 border-b-2 border-black cursor-crosshair 
                                 ${selected.has(`${dayName}-spec-${hour}:30`) ? 'bg-pink' : 'hover:bg-pink-hover'}`}
                         />
                     </React.Fragment>
@@ -97,7 +97,7 @@ function WorkerAddAvailability() {
 
             <div className="mb-4">
                 <p className="text-base text-gray-500 italic mb-6">Click and drag to select availability</p>
-                <h2 className="text-xl font-bold mb-4">Weekly Overview</h2>
+                <h2 className="text-2xl mb-4">Weekly Overview</h2>
             </div>
 
             {/* --- MAIN WEEKLY GRID --- */}
@@ -107,29 +107,29 @@ function WorkerAddAvailability() {
                     onMouseLeave={() => setIsDragging(false)}
                     onMouseUp={() => setIsDragging(false)}
                 >
-                    <div className="border-r-2 border-b-2 border-black bg-gray-100 p-2" />
+                    <div className="border-r-2 border-b-2 border-black bg-blue-light p-2" />
                     {DAYS.map(day => (
-                        <div key={day} className="border-r-2 border-b-2 border-black bg-gray-100 p-2 font-bold text-center">
+                        <div key={day} className="border-r-2 border-b-2 border-black bg-blue-light p-2 font-bold text-center">
                             {day}
                         </div>
                     ))}
 
                     {HOURS.map((hour) => (
                         <React.Fragment key={hour}>
-                            <div className="border-r-2 border-b border-black p-2 text-right text-sm font-semibold bg-gray-50 h-10">{hour}:00</div>
+                            <div className="border-r-2 border-b border-black p-2 text-right text-sm font-semibold bg-blue-light h-10">{hour}:00</div>
                             {DAYS.map(day => (
                                 <div key={`${day}-${hour}:00`}
                                      onMouseDown={() => { setIsDragging(true); toggleCell(`${day}-${hour}:00`); }}
                                      onMouseEnter={() => handleMouseEnter(`${day}-${hour}:00`)}
-                                     className={`border-r-2 border-b border-black cursor-pointer ${selected.has(`${day}-${hour}:00`) ? 'bg-pink' : 'hover:bg-pink-hover'}`}
+                                     className={`border-r-2 border-b border-black cursor-crosshair ${selected.has(`${day}-${hour}:00`) ? 'bg-pink' : 'hover:bg-pink-hover'}`}
                                 />
                             ))}
-                            <div className="border-r-2 border-b-2 border-black p-1 text-right text-xs text-gray-400 bg-gray-50 h-10">:30</div>
+                            <div className="border-r-2 border-b-2 border-black p-1 text-right text-xs text-gray-400 bg-blue-light h-10">:30</div>
                             {DAYS.map(day => (
                                 <div key={`${day}-${hour}:30`}
                                      onMouseDown={() => { setIsDragging(true); toggleCell(`${day}-${hour}:30`); }}
                                      onMouseEnter={() => handleMouseEnter(`${day}-${hour}:30`)}
-                                     className={`border-r-2 border-b-2 border-black cursor-pointer ${selected.has(`${day}-${hour}:30`) ? 'bg-pink' : 'hover:bg-pink-hover'}`}
+                                     className={`border-r-2 border-b-2 border-black cursor-crosshair ${selected.has(`${day}-${hour}:30`) ? 'bg-pink' : 'hover:bg-pink-hover'}`}
                                 />
                             ))}
                         </React.Fragment>

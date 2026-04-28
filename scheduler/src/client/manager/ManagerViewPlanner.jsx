@@ -48,7 +48,7 @@ function ManagerViewPlanner() {
                     <div
                         key={idx}
                         className={`h-full flex-1 ${
-                            worker === 'WorkerA' ? 'bg-pink-400' : 'bg-green-400'
+                            worker === 'WorkerA' ? 'bg-pink' : 'bg-green'
                         } ${workers.length > 1 && idx === 0 ? 'border-r border-black/10' : ''}`}
                         title={worker}
                     />
@@ -69,25 +69,25 @@ function ManagerViewPlanner() {
 
     return (
         <section className="px-10 mt-8 select-none pb-20">
-            <h1 className="text-3xl mb-2">{obj.title} Planner</h1>
-            <div className="flex gap-6 mb-6">
-                <h1 className="text-base">Worker Availabilities</h1>
-                <div className="flex items-center gap-2 text-sm font-medium">
-                    <div className="w-4 h-4 bg-pink-400 border border-gray-400"></div>
-                    <span>Worker A (Pink)</span>
+            <h1 className="text-3xl mb-8">{obj.title} Planner</h1>
+            <div className="flex flex-row gap-6 mb-6">
+                <h1 className="text-xl">View All Worker Availabilities:</h1>
+                <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 bg-pink border border-black"></div>
+                    <span>Sophie</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm font-medium">
-                    <div className="w-4 h-4 bg-green-400 border border-gray-400"></div>
-                    <span>Worker B (Green)</span>
+                <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 bg-green border border-black"></div>
+                    <span>Parker</span>
                 </div>
             </div>
 
             <div className="max-w-4xl">
-                <div className="grid grid-cols-[80px_repeat(5,1fr)] border-t-2 border-l-2 border-black bg-white shadow-sm">
+                <div className="grid grid-cols-[80px_repeat(5,1fr)] border-t-2 border-l-2 border-black bg-gray-100 shadow-sm">
                     {/* Header Row */}
-                    <div className="border-r-2 border-b-2 border-black bg-gray-100" />
+                    <div className="border-r-2 border-b-2 border-black bg-blue-light" />
                     {DAYS.map(day => (
-                        <div key={day} className="border-r-2 border-b-2 border-black bg-gray-100 p-2 font-bold text-center">
+                        <div key={day} className="border-r-2 border-b-2 border-black bg-blue-light p-2 font-bold text-center">
                             {day}
                         </div>
                     ))}
@@ -96,7 +96,7 @@ function ManagerViewPlanner() {
                     {HOURS.map((hour) => (
                         <React.Fragment key={hour}>
                             {/* :00 Block */}
-                            <div className="border-r-2 border-b border-black p-2 text-right text-sm font-semibold bg-gray-50 h-10">
+                            <div className="border-r-2 border-b border-black p-2 text-right text-sm font-semibold bg-blue-light h-10">
                                 {hour}:00
                             </div>
                             {DAYS.map(day => (
@@ -106,7 +106,7 @@ function ManagerViewPlanner() {
                             ))}
 
                             {/* :30 Block */}
-                            <div className="border-r-2 border-b-2 border-black p-1 text-right text-xs text-gray-400 bg-gray-50 h-10">
+                            <div className="border-r-2 border-b-2 border-black p-1 text-right text-xs text-gray-400 bg-blue-light h-10">
                                 :30
                             </div>
                             {DAYS.map(day => (
@@ -119,7 +119,7 @@ function ManagerViewPlanner() {
                 </div>
             </div>
 
-            <div className="mt-8 select-none">
+            <div className="mt-12 select-none max-w-4xl">
                 {!isSubmitted ? (
                     /* The Div with the Button (disappears after click) */
                     <div className="p-4 rounded-md gap-4 flex-row">
@@ -156,15 +156,10 @@ function ManagerViewPlanner() {
                 ) : (
                     /* The New Div (appears after click) */
                     <div className="animate-fade-in">
-                        <p className="text-3xl mb-6">Schedule</p>
+                        <p className="text-2xl mb-2">Schedule</p>
                         <p className="text-base text-gray-500 italic mb-6">Select a worker, then click and drag to change scheduled hours</p>
                         <ManagerModifyScheduleLogic />
                         <div className="flex flex-row gap-4">
-                            <button
-                                className="cursor-pointer w-50 bg-blue-light px-6 py-2 rounded-md hover:bg-blue-light-hover transition-colors"
-                            >
-                                Download Schedule
-                            </button>
                             <button
                                 className="cursor-pointer w-50 bg-blue-light px-6 py-2 rounded-md hover:bg-blue-light-hover transition-colors"
                                 onClick={(e) => handleSubmit(e)}
@@ -172,9 +167,14 @@ function ManagerViewPlanner() {
                                 Save for Later
                             </button>
                             <button
-                                className="cursor-pointer w-50 bg-blue-light px-6 py-2 rounded-md hover:bg-blue-light-hover transition-colors"
+                                className="w-50 bg-blue-light px-6 py-2 rounded-md transition-colors"
                             >
                                 Share with Workers
+                            </button>
+                            <button
+                                className="w-50 bg-blue-light px-6 py-2 rounded-md"
+                            >
+                                Download Schedule
                             </button>
                         </div>
                     </div>

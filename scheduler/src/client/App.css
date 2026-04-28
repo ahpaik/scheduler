@@ -21,6 +21,8 @@
   --color-pink-hover: #EFB1CC;
   --color-green-hover: #BCE4CE;
   --color-orange-hover: #FFA07A;
+
+  --color-blue-lt: #A2CFFE;
 }
 
 ::placeholder {
